@@ -79,7 +79,7 @@ def dibujar_roseta(pixels, puntos, ancho, alto):
 def generar_roseta(n):
     """Genera una variante de 700x700 píxeles para el valor de N indicado."""
     ancho = alto = 700
-    imagen = Image.new("RGB", (ancho, alto), (10, 10, 18))
+    imagen = Image.new("RGB", (ancho, alto), (0, 0, 0))
     pixels = imagen.load()
     puntos = generar_puntos_circulo(350, 350, 300, n)
     dibujar_roseta(pixels, puntos, ancho, alto)
