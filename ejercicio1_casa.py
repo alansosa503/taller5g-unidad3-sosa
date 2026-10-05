@@ -65,6 +65,11 @@ def dibujar_ventana(pixels, x0, y0, tam, color, ancho, alto):
     dda(pixels, x0, medio_y, x0 + tam, medio_y, color, ancho, alto)
 
 
+def dibujar_puerta(pixels, x0, y0, x1, y1, color, ancho, alto):
+    """Dibuja la puerta de la casa como un rectángulo independiente."""
+    dibujar_rectangulo(pixels, x0, y0, x1, y1, color, ancho, alto)
+
+
 def dibujar_arbol(pixels, x, y_base, color_tronco, color_copa, ancho, alto):
     """Extensión voluntaria: árbol formado por tronco rectangular y copa triangular."""
     dibujar_rectangulo(pixels, x, y_base - 70, x + 25, y_base, color_tronco, ancho, alto)
@@ -117,7 +122,7 @@ def main():
     dibujar_humo(pixels, 380, 135, gris, ancho, alto)
 
     # 3) Puerta rectangular.
-    dibujar_rectangulo(pixels, 270, 315, 330, 410, marron, ancho, alto)
+    dibujar_puerta(pixels, 270, 315, 330, 410, marron, ancho, alto)
 
     # 4) Dos ventanas cuadradas.
     dibujar_ventana(pixels, 205, 270, 55, blanco, ancho, alto)
