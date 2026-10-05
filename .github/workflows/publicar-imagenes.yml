@@ -1,0 +1,41 @@
+name: Publicar imágenes de la tarea
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/publicar-imagenes.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publicar-imagenes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Extraer imágenes finales
+        run: |
+          unzip -j -o sosa_tarea_u3.zip \
+            'sosa_tarea_u3/casa.png' \
+            'sosa_tarea_u3/roseta_12.png' \
+            'sosa_tarea_u3/roseta_24.png' \
+            'sosa_tarea_u3/roseta_36.png' \
+            'sosa_tarea_u3/roseta.png' \
+            -d .
+
+      - name: Publicar resultados en el repositorio
+        run: |
+          git config user.name "alansosa503"
+          git config user.email "alansosa503@gmail.com"
+          git add casa.png roseta_12.png roseta_24.png roseta_36.png roseta.png
+          if git diff --cached --quiet; then
+            echo "Las imágenes ya están publicadas."
+          else
+            git commit -m "Agregar imágenes finales de la Unidad III"
+            git push
+          fi
